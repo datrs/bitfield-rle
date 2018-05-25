@@ -1,0 +1,18 @@
+[[package]]
+name = "bitfield-rle"
+version = "0.1.0"
+dependencies = [
+ "sparse-bitfield 0.3.4-alpha.0",
+]
+
+[[package]]
+name = "memory-pager"
+version = "0.4.6"
+
+[[package]]
+name = "sparse-bitfield"
+version = "0.3.4-alpha.0"
+dependencies = [
+ "memory-pager 0.4.6",
+]
+
