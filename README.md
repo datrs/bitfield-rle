@@ -58,7 +58,7 @@ where
   b = bit
 ```
 
-If the last bit is *not* set then a header represents an uncompressed bit
+If the last bit is set to `0` then a header represents an uncompressed bit
 sequence.
 
 ```txt

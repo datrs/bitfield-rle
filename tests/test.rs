@@ -4,7 +4,7 @@ extern crate sparse_bitfield as bitfield;
 use bitfield::Bitfield;
 
 #[test]
-fn should_encode_decode () {
+fn should_encode_decode() {
   let mut bits = Bitfield::new(1024);
   bits.set(400, true);
 

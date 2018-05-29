@@ -2,17 +2,29 @@
 name = "bitfield-rle"
 version = "0.1.0"
 dependencies = [
- "sparse-bitfield 0.3.4-alpha.0",
+ "sparse-bitfield 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "varinteger 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "memory-pager"
 version = "0.4.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "sparse-bitfield"
-version = "0.3.4-alpha.0"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "memory-pager 0.4.6",
+ "memory-pager 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
+[[package]]
+name = "varinteger"
+version = "1.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[metadata]
+"checksum memory-pager 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)" = "7ea4a79af1ba427efbb5cd7b14da72ea0b7ae8a3cb9fe28af14435be35d3bd19"
+"checksum sparse-bitfield 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "d89e74eecae83c38ddcc342934d0dfa837a20f44d5f09bedd63469d837f7e421"
+"checksum varinteger 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)" = "cddf39a26d1ca1062b2eb127a8cb2d6cedd8b14e51fec7cc035c342fcdca842a"

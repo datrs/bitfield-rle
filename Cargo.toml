@@ -9,7 +9,7 @@ authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>"]
 readme = "README.md"
 
 [dependencies]
+varinteger = "1.0.3"
 
 [dev-dependencies]
-# clippy = "0.0"
-sparse-bitfield = { path = "../sparse-bitfield"}
+sparse-bitfield = "0.3.3"
