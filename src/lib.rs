@@ -3,7 +3,11 @@
 #![cfg_attr(feature = "nightly", doc(include = "../README.md"))]
 #![cfg_attr(test, deny(warnings))]
 
+#[macro_use]
+extern crate failure;
 extern crate varinteger as varint;
+
+use failure::Error;
 
 /// Returns how many bytes are needed to encode the bitfield.
 pub fn encode_len(_buf: &[u8]) -> usize {
@@ -26,14 +30,12 @@ pub fn decode(buf: &[u8]) {
 }
 
 /// Decode an encoded bitfield at a specific offset.
-pub fn decode_with_offset(buf: &[u8], mut offset: usize) {
+pub fn decode_with_offset(_buf: &[u8], mut _offset: usize) {
   unimplemented!();
 }
 
 /// Returns how many bytes a decoded bitfield will use.
-pub fn decoding_len(
-  buf: &[u8]
-) -> Result<usize, Box<std::error::Error + 'static>> {
+pub fn decoding_len(buf: &[u8]) -> Result<usize, Error> {
   decoding_len_with_offset(&buf, 0)
 }
 
@@ -42,7 +44,7 @@ pub fn decoding_len(
 pub fn decoding_len_with_offset(
   buf: &[u8],
   mut offset: usize,
-) -> Result<usize, Box<std::error::Error + 'static>> {
+) -> Result<usize, Error> {
   let mut len = 0;
   let mut val = 0u64;
 
@@ -63,7 +65,11 @@ pub fn decoding_len_with_offset(
     }
   }
 
-  // TODO: replace with ensure!() call.
-  // ensure!(!offset > buffer.len(), "Invalid RLE bitfield {} > {}", offset, buffer.len());
+  ensure!(
+    !offset > buf.len(),
+    "Invalid RLE bitfield {} > {}",
+    offset,
+    buf.len()
+  );
   Ok(len)
 }
