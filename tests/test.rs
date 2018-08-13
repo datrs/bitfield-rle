@@ -1,26 +1,14 @@
-extern crate bitfield_rle as rle;
-extern crate sparse_bitfield as bitfield;
-
-use bitfield::Bitfield;
+extern crate bitfield_rle;
 
 #[test]
 fn should_encode_decode() {
-  let mut bits = Bitfield::new(1024);
-  bits.set(400, true);
+  let mut bits: Vec<u8> = vec![0; 16];
+  bits[8] = 0b00000001;
 
-  let len = bits.byte_len();
-  let mut bytes = Vec::with_capacity(len);
-  bits.to_bytes(bytes);
+  let enc = bitfield_rle::encode(&bits);
+  assert_eq!(enc.len(), 6);
 
-  let len = rle::encode_len(bytes);
-  let enc = Vec::with_capacity(len);
-  rle::encode(bytes, enc);
-  assert_eq(enc.len(), 6);
+  let (res, _len) = bitfield_rle::decode(enc).unwrap();
 
-  let len = rle::decode_len(enc);
-  let dec = Vec::with_capacity(len);
-  rle::decode(enc, dec);
-
-  let bits = Bitfield::from_bytes(dec);
-  assert_eq(bits.get(400), true);
+  assert_eq!(res[8], 0b00000001);
 }
