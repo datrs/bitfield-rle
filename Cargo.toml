@@ -10,7 +10,7 @@ readme = "README.md"
 
 [dependencies]
 varinteger = "1.0.3"
-failure = "0.1.1"
+failure = "0.1.2"
 
 [dev-dependencies]
 sparse-bitfield = "0.8.0"
