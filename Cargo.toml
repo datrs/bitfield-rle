@@ -9,7 +9,7 @@ authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>"]
 readme = "README.md"
 
 [dependencies]
-varinteger = "1.0.3"
+varinteger = "1.0.6"
 failure = "0.1.2"
 
 [dev-dependencies]
