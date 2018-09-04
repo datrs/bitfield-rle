@@ -24,7 +24,7 @@ name = "bitfield-rle"
 version = "0.0.0"
 dependencies = [
  "failure 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "sparse-bitfield 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sparse-bitfield 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "varinteger 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -65,8 +65,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "memory-pager"
-version = "0.6.1"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "failure 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "proc-macro2"
@@ -91,10 +94,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "sparse-bitfield"
-version = "0.8.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "memory-pager 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "failure 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "memory-pager 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -155,11 +159,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum failure 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7efb22686e4a466b1ec1a15c2898f91fa9cb340452496dca654032de20ff95b9"
 "checksum failure_derive 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)" = "946d0e98a50d9831f5d589038d2ca7f8f455b1c21028c0db0e84116a12696426"
 "checksum libc 0.2.41 (registry+https://github.com/rust-lang/crates.io-index)" = "ac8ebf8343a981e2fa97042b14768f02ed3e1d602eac06cae6166df3c8ced206"
-"checksum memory-pager 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f0266b6b425f8296a0d27942dbf88a573db024ac9bd74f21fba1e575fd07c2bc"
+"checksum memory-pager 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "bae12a870f4005192b27c1ca0c1fcec7980f0d8ef67a4ce6da35d403eb35a58a"
 "checksum proc-macro2 0.4.13 (registry+https://github.com/rust-lang/crates.io-index)" = "ee5697238f0d893c7f0ecc59c0999f18d2af85e424de441178bcacc9f9e6cf67"
 "checksum quote 0.6.8 (registry+https://github.com/rust-lang/crates.io-index)" = "dd636425967c33af890042c483632d33fa7a18f19ad1d7ea72e8998c6ef8dea5"
 "checksum rustc-demangle 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "76d7ba1feafada44f2d38eed812bd2489a03c0f5abb975799251518b68848649"
-"checksum sparse-bitfield 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "37a0bee66665cdf926ad404d3c0ae2127f251accddee740892c513c7c3b41d2d"
+"checksum sparse-bitfield 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)" = "bc32e1889c0b1dbdda9f0d193f49abb78c81bf44a41501156963814a8b94a607"
 "checksum syn 0.14.9 (registry+https://github.com/rust-lang/crates.io-index)" = "261ae9ecaa397c42b960649561949d69311f08eeaea86a65696e6e46517cf741"
 "checksum synstructure 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "85bb9b7550d063ea184027c9b8c20ac167cd36d3e06b3a40bceb9d746dc1a7b7"
 "checksum unicode-xid 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
