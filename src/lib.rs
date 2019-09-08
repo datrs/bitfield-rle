@@ -19,11 +19,6 @@ pub fn encode_len(_buf: &[u8]) -> usize {
   unimplemented!();
 }
 
-/// Returns how many bytes a decoded bitfield will use.
-pub fn decode_len(_buf: &[u8]) -> usize {
-  unimplemented!();
-}
-
 /// Encode a bitfield.
 pub fn encode(reader: impl AsRef<Vec<u8>>) -> Vec<u8> {
   let offset = 0;
@@ -32,53 +27,78 @@ pub fn encode(reader: impl AsRef<Vec<u8>>) -> Vec<u8> {
 
 /// Encode a bitfield at a specific offset
 pub fn encode_with_offset(
-  reader: impl AsRef<Vec<u8>>,
-  offset: usize,
+  _reader: impl AsRef<Vec<u8>>,
+  _offset: usize,
 ) -> Vec<u8> {
   unimplemented!();
 }
 
 /// Decode an encoded bitfield.
-pub fn decode(buf: impl AsRef<Vec<u8>>) -> Result<(Vec<u8>, usize)> {
-  let _reader = buf.as_ref();
-  let output = Vec::new();
-  let len = decode_with_offset(&output, 0)?;
-  Ok((output, len))
+pub fn decode(buf: impl AsRef<[u8]>) -> Result<Vec<u8>> {
+  let (bitfield, _) = decode_with_offset(&buf, 0)?;
+  Ok(bitfield)
 }
 
-/// Decode an encoded bitfield at a specific offset.
+/// Decode an encoded bitfield, starting at a specific offset.
 pub fn decode_with_offset(
-  buf: impl AsRef<Vec<u8>>,
-  offset: usize,
-) -> Result<usize> {
+  buf: impl AsRef<[u8]>,
+  mut offset: usize,
+) -> Result<(Vec<u8>, usize)> {
   let buf = buf.as_ref();
-  let _len = decoding_len_with_offset(&buf, offset)?;
-  unimplemented!();
+  let mut bitfield = vec![0; decode_len_with_offset(&buf, offset)?];
+  let mut next = 0u64;
+  let mut ptr = 0;
+
+  while offset < buf.len() {
+    offset += varint::decode_with_offset(buf, offset, &mut next);
+    let repeat = next & 1;
+    let len = if repeat > 0 {
+      (next >> 2) as usize
+    } else {
+      (next >> 1) as usize
+    };
+
+    if repeat > 0 {
+      if next & 2 > 0 {
+        for i in 0..len {
+          bitfield[ptr + i] = 255;
+        }
+      }
+    } else {
+      for i in 0..len {
+        bitfield[ptr + i] = buf[offset + i];
+      }
+      offset += len;
+    }
+
+    ptr += len;
+  }
+
+  Ok((bitfield, buf.len() - offset))
 }
 
 /// Returns how many bytes a decoded bitfield will use.
-pub fn decoding_len(buf: impl AsRef<Vec<u8>>) -> Result<usize> {
-  decoding_len_with_offset(&buf, 0)
+pub fn decode_len(buf: impl AsRef<[u8]>) -> Result<usize> {
+  decode_len_with_offset(&buf, 0)
 }
 
-/// Returns how many bytes a decoded bitfield will use at a specific offset.
-pub fn decoding_len_with_offset(
-  buf: impl AsRef<Vec<u8>>,
+/// Returns how many bytes a decoded bitfield will use, starting at a specific offset.
+pub fn decode_len_with_offset(
+  buf: impl AsRef<[u8]>,
   mut offset: usize,
 ) -> Result<usize> {
   let buf = buf.as_ref();
   let mut len = 0;
-  let mut val = 0u64;
+  let mut next = 0u64;
 
   while offset < buf.len() {
-    let next = varint::decode(buf, &mut val);
-    offset += next;
+    offset += varint::decode_with_offset(buf, offset, &mut next);
     let repeat = next & 1;
 
     let slice = if repeat > 0 {
-      next - (next & 3) / 4
+      (next >> 2) as usize
     } else {
-      next / 2
+      (next >> 1) as usize
     };
 
     len += slice;
