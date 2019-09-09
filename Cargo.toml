@@ -13,4 +13,4 @@ varinteger = "1.0.6"
 failure = "0.1.5"
 
 [dev-dependencies]
-sparse-bitfield = "0.8.1"
+sparse-bitfield = "0.10.0"
