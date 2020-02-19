@@ -1,16 +1,14 @@
 [package]
-name = "bitfield-rle"
-version = "0.0.0"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/datrs/bitfield-rle"
-documentation = "https://docs.rs/bitfield-rle"
-description = "A run-length-encoder that compresses bitfields"
-authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>"]
-readme = "README.md"
+name = 'bitfield-rle'
+version = '0.0.0'
+license = 'MIT OR Apache-2.0'
+repository = 'https://github.com/datrs/bitfield-rle'
+documentation = 'https://docs.rs/bitfield-rle'
+description = 'A run-length-encoder that compresses bitfields'
+authors = ['Yoshua Wuyts <yoshuawuyts@gmail.com>']
+readme = 'README.md'
+edition = '2018'
 
 [dependencies]
-varinteger = "1.0.6"
-failure = "0.1.5"
-
-[dev-dependencies]
-sparse-bitfield = "0.8.1"
+varinteger = '1.0.6'
+failure = '0.1.6'

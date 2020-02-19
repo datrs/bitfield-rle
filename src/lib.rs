@@ -3,11 +3,8 @@
 #![cfg_attr(feature = "nightly", doc(include = "../README.md"))]
 #![cfg_attr(test, deny(warnings))]
 
-#[macro_use]
-extern crate failure;
-extern crate varinteger as varint;
-
-use failure::Error;
+use failure::{ensure, Error};
+use varinteger as varint;
 
 use std::convert::AsRef;
 
