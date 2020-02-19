@@ -1,3 +1,20 @@
+## 2020-02-19, Version 0.1.1
+### Commits
+- [[`02137f261e`](https://github.com/datrs/bitfield-rle/commit/02137f261e52cf5f215e18bb7af9cde560413e32)] (cargo-release) version 0.1.1 (Bruno Tavares)
+- [[`1d27c0c3bd`](https://github.com/datrs/bitfield-rle/commit/1d27c0c3bd622032dc47feaaf8068cde4cd49b16)] Merge pull request #15 from datrs/clippy (Bruno Tavares)
+- [[`df9b153087`](https://github.com/datrs/bitfield-rle/commit/df9b153087219b90befa8db903ec9a0611bd66d5)] Fix clippy lint errors (Bruno Tavares)
+- [[`d93a2c90de`](https://github.com/datrs/bitfield-rle/commit/d93a2c90de0e1671cd0bda2abc131aff9b8b7830)] Update changelog (Bruno Tavares)
+
+### Stats
+```diff
+ CHANGELOG.md | 49 +++++++++++++++++++++++++++++++++++++++++++++++++
+ Cargo.lock   |  2 +-
+ Cargo.toml   |  2 +-
+ src/lib.rs   | 24 +++++++++++-------------
+ 4 files changed, 62 insertions(+), 15 deletions(-)
+```
+
+
 ## 2020-02-19, Version 0.1.0
 ### Commits
 - [[`294582f382`](https://github.com/datrs/bitfield-rle/commit/294582f382eb2fa7f01802f32092b39b0d63969d)] (cargo-release) version 0.1.0 (Bruno Tavares)
