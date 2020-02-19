@@ -29,26 +29,26 @@ pub fn encode_with_offset(
   let mut noncontiguous_bits = Vec::new();
   let mut enc = Vec::with_capacity(encode_len_with_offset(&buf, offset));
 
-  for i in offset..buf.len() {
-    if contiguous && buf[i] == prev_bits {
+  for (i, byte) in buf[offset..].iter().enumerate() {
+    if contiguous && *byte == prev_bits {
       len += 1;
       continue;
     } else if contiguous {
       write_contiguous(&mut enc, len, prev_bits);
     }
 
-    if buf[i] == 0 || buf[i] == 255 {
+    if *byte == 0 || *byte == 255 {
       if !contiguous && i > offset {
         write_noncontiguous(&mut enc, &mut noncontiguous_bits);
       }
       len = 1;
-      prev_bits = buf[i];
+      prev_bits = *byte;
       contiguous = true;
     } else if !contiguous {
-      noncontiguous_bits.push(buf[i]);
+      noncontiguous_bits.push(*byte);
     } else {
       contiguous = false;
-      noncontiguous_bits.push(buf[i]);
+      noncontiguous_bits.push(*byte);
     }
   }
 
@@ -96,21 +96,21 @@ pub fn encode_len_with_offset(buf: impl AsRef<[u8]>, offset: usize) -> usize {
   let mut contiguous = false;
   let mut prev_bits = 0;
 
-  for i in offset..buf.len() {
-    if contiguous && buf[i] == prev_bits {
+  for (i, byte) in buf[offset..].iter().enumerate() {
+    if contiguous && *byte == prev_bits {
       partial_len += 1;
       continue;
     } else if contiguous {
       len += varint::length(partial_len << 2) as u64;
     }
 
-    if buf[i] == 0 || buf[i] == 255 {
+    if *byte == 0 || *byte == 255 {
       if !contiguous && i > offset {
         len += partial_len;
         len += varint::length(partial_len << 1) as u64;
       }
       partial_len = 1;
-      prev_bits = buf[i];
+      prev_bits = *byte;
       contiguous = true;
     } else if !contiguous {
       partial_len += 1;
@@ -162,9 +162,7 @@ pub fn decode_with_offset(
         }
       }
     } else {
-      for i in 0..len {
-        bitfield[ptr + i] = buf[offset + i];
-      }
+      bitfield[ptr..(len + ptr)].clone_from_slice(&buf[offset..(len + offset)]);
       offset += len;
     }
 
