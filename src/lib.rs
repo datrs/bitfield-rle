@@ -3,13 +3,13 @@
 #![cfg_attr(feature = "nightly", doc(include = "../README.md"))]
 #![cfg_attr(test, deny(warnings))]
 
-use failure::{ensure, Error};
+use anyhow::anyhow;
 use varinteger as varint;
 
-use std::convert::AsRef;
+type Result<T> =
+  std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;
 
-/// Result type.
-pub type Result<T> = std::result::Result<T, Error>;
+use std::convert::AsRef;
 
 /// Encode a bitfield.
 pub fn encode(buf: impl AsRef<[u8]>) -> Vec<u8> {
@@ -202,12 +202,11 @@ pub fn decode_len_with_offset(
     }
   }
 
-  ensure!(
-    !offset > buf.len(),
-    "Invalid RLE bitfield {} > {}",
-    offset,
-    buf.len()
-  );
+  if offset > buf.len() {
+    return Err(
+      anyhow!("Invalid RLE bitfield {} > {}", offset, buf.len()).into(),
+    );
+  }
 
   Ok(len)
 }
