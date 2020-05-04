@@ -11,4 +11,4 @@ edition = '2018'
 
 [dependencies]
 varinteger = '1.0.6'
-failure = '0.1.7'
+failure = '0.1.8'
