@@ -22,7 +22,7 @@ dependencies = [
 
 [[package]]
 name = "bitfield-rle"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "failure 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "varinteger 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
