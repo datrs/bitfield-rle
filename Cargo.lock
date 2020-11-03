@@ -2,22 +2,20 @@
 # It is not intended for manual editing.
 [[package]]
 name = "anyhow"
-version = "1.0.33"
+version = "1.0.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bf8dcb5b4bbaa28653b647d8c77bd4ed40183b48882e130c1f1ffb73de069fd7"
 
 [[package]]
 name = "bitfield-rle"
 version = "0.2.0"
 dependencies = [
- "anyhow 1.0.33 (registry+https://github.com/rust-lang/crates.io-index)",
- "varinteger 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "anyhow",
+ "varinteger",
 ]
 
 [[package]]
 name = "varinteger"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-
-[metadata]
-"checksum anyhow 1.0.33 (registry+https://github.com/rust-lang/crates.io-index)" = "a1fd36ffbb1fb7c834eac128ea8d0e310c5aeb635548f9d58861e1308d46e71c"
-"checksum varinteger 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)" = "7ea29db9f94ff08bb619656b8120878f280526f71dc88b5262c958a510181812"
+checksum = "7ea29db9f94ff08bb619656b8120878f280526f71dc88b5262c958a510181812"
